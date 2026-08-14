@@ -8,7 +8,7 @@
  *   — deux filets argent, l'un à l'extérieur de l'anneau, l'autre à l'intérieur ;
  *   — disque cyan avec son croissant de lumière ;
  *   — aiguille rouge en dard : facette haute éclairée, facette basse dans
- *     l'ombre, pointée à l'est, cerclée d'argent, avec son rivet.
+ *     l'ombre, cerclée d'argent, avec son rivet.
  *
  * À remplacer par le vectoriel officiel dès que le client le fournit.
  */
@@ -45,38 +45,38 @@ export default function CompassMark({
       <circle cx="50" cy="50" r="48.5" fill="none" stroke="#c8ccd1" strokeWidth="1.3" />
 
       {/* Anneau bleu */}
-      <circle cx="50" cy="50" r="44" fill="none" stroke={`url(#${ring})`} strokeWidth="8" />
+      <circle cx="50" cy="50" r="43" fill="none" stroke={`url(#${ring})`} strokeWidth="10.5" />
 
-      {/* Filet argent intérieur, dans le vide entre l'anneau et le disque */}
-      <circle cx="50" cy="50" r="34" fill="none" stroke="#dfe3e8" strokeWidth="1.3" />
+      {/* Filet argent intérieur, au bord interne de l'anneau */}
+      <circle cx="50" cy="50" r="36.8" fill="none" stroke="#dfe3e8" strokeWidth="1.3" />
 
-      {/*
-        Repères cardinaux : posés sur l'anneau, pointe vers le centre, et
-        débordant légèrement dans le vide intérieur comme sur l'original.
-      */}
-      <g fill="#12305e">
-        <path d="M44 3.4h12L50 15.5z" />
-        <path d="M44 96.6h12L50 84.5z" />
-        <path d="M3.4 44v12L15.5 50z" />
-        <path d="M96.6 44v12L84.5 50z" />
+      {/* Repères cardinaux : chevrons posés sur la bande bleue, pointe vers le centre. */}
+      <g fill="#0f2a52" opacity="0.85">
+        <path d="M44.4 7h11.2L50 19z" />
+        <path d="M44.4 93h11.2L50 81z" />
+        <path d="M7 44.4v11.2L19 50z" />
       </g>
 
       {/* Disque central et son croissant de lumière */}
-      <circle cx="50" cy="50" r="25" fill={`url(#${disc})`} />
-      <circle cx="50" cy="50" r="25" fill="none" stroke="#ffffff" strokeWidth="0.9" opacity="0.5" />
+      <circle cx="50" cy="50" r="30.6" fill="none" stroke="#dfe3e8" strokeWidth="1.6" />
+      <circle cx="50" cy="50" r="29" fill={`url(#${disc})`} />
       <path
-        d="M50 31a19 19 0 0 0-13.4 32.4"
+        d="M50 28a22 22 0 0 0-15.6 37.6"
         fill="none"
         stroke="#ffffff"
-        strokeWidth="2.6"
+        strokeWidth="3"
         strokeLinecap="round"
-        opacity="0.32"
+        opacity="0.34"
       />
 
       {/*
-        Aiguille. Point clé de fidélité : elle ne traverse pas le diamètre —
-        elle part du centre et file vers l'est, la pointe débordant l'anneau.
-        Ailes hautes et basses proches de la pointe, flancs concaves.
+        Aiguille. Deux pièges relevés en comparant au JPG :
+        1. Elle ne traverse pas le diamètre : elle pivote au centre et occupe
+           la seule moitié est.
+        2. Son sens : la POINTE fine vise le centre (ouest), les deux barbes
+           s'ouvrent vers l'est et débordent l'anneau, séparées par une
+           échancrure en queue d'aronde où se loge le rivet. L'inverse donne
+           un simple losange rouge à petite taille.
       */}
       <g
         style={
@@ -85,24 +85,20 @@ export default function CompassMark({
             : undefined
         }
       >
-        {/* Moitié basse, dans l'ombre */}
+        {/* Cerne argent : tracé une fois sous les deux facettes */}
         <path
-          d="M93 50C86 52.6 79 56.2 72.5 65L44 50Z"
-          fill="#8d0c24"
+          d="M50 50 97 31.5 85 50 98 70.5Z"
+          fill="none"
           stroke="#e9e4d8"
-          strokeWidth="1.3"
+          strokeWidth="2.4"
           strokeLinejoin="round"
         />
-        {/* Moitié haute, éclairée */}
-        <path
-          d="M93 50C86 47.4 79 43.8 72.5 35L44 50Z"
-          fill="#d5344c"
-          stroke="#e9e4d8"
-          strokeWidth="1.3"
-          strokeLinejoin="round"
-        />
-        {/* Rivet du pivot */}
-        <circle cx="84" cy="50" r="2.7" fill="#dfe3e8" stroke="#9aa3ad" strokeWidth="0.6" />
+        {/* Barbe basse, dans l'ombre */}
+        <path d="M50 50 85 50 98 70.5Z" fill="#8d0c24" />
+        {/* Barbe haute, éclairée */}
+        <path d="M50 50 97 31.5 85 50Z" fill="#d5344c" />
+        {/* Rivet du pivot, logé dans l'échancrure */}
+        <circle cx="93" cy="50.5" r="2.6" fill="#eef1f4" stroke="#8d949c" strokeWidth="0.7" />
       </g>
     </svg>
   );

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <LegalPage
+      family="ourlet"
       draft
       eyebrow="Données personnelles"
       title="Confidentialité & cookies"

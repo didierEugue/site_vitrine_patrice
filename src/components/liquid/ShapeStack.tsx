@@ -1,34 +1,30 @@
 import type { ReactNode } from "react";
 
 import LiquidShape, { type ShapeTone } from "./LiquidShape";
-import { Cross, Dot, Frame, Ring, Sq, Squiggle, Tri } from "./Marks";
+import { Cross, Dot, Ring, Sq, Squiggle, Tri } from "./Marks";
 import type { BlobFamily } from "./blob";
 
 /**
- * L'unité visuelle du site : une forme liquide, un cadre filaire décalé, des
- * petits signes, et éventuellement un contenu centré.
+ * L'unité visuelle du site : une forme liquide, des petits signes, et
+ * éventuellement un contenu centré.
  *
- * Le décalage cadre / forme est ce qui donne la tension : le cadre ne doit
- * jamais coïncider avec le contour de la forme.
+ * Pas de cadre filaire : le losange qui doublait la forme faisait ressortir
+ * une géométrie parasite et enfermait le liquide dans un contour net.
  */
 export default function ShapeStack({
   family = "bold",
   tone = "azur",
-  frame = "diamond",
   spin = 0,
   duration = 18,
   marks = true,
-  frameClass = "text-ink-900/25",
   className = "",
   children,
 }: {
   family?: BlobFamily;
   tone?: ShapeTone;
-  frame?: "diamond" | "square" | "circle" | "triangle" | "none";
   spin?: number;
   duration?: number;
   marks?: boolean;
-  frameClass?: string;
   className?: string;
   children?: ReactNode;
 }) {
@@ -51,13 +47,6 @@ export default function ShapeStack({
         duration={duration}
         className="absolute inset-0 h-full w-full"
       />
-
-      {frame !== "none" ? (
-        <Frame
-          shape={frame}
-          className={`absolute inset-[-9%] h-[118%] w-[118%] ${frameClass}`}
-        />
-      ) : null}
 
       {marks ? (
         <div className="text-ink-900/40 pointer-events-none absolute inset-0">

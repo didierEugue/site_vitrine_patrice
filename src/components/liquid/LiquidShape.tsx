@@ -48,11 +48,19 @@ export default function LiquidShape({
   const animate = !useReducedMotion();
 
   return (
+    // `overflow visible` : le tracé sort de la boîte 0–100 — le rayon monte à
+    // 1,44 × 44 depuis un centre à 50, soit 113 — et les cubiques débordent
+    // encore au-delà. Sans cela le navigateur rogne au bord du viewBox et la
+    // forme se termine par un bord droit net, en plein vide. Le débordement
+    // est ensuite arrêté par la section qui l'accueille, sur une limite qui,
+    // elle, fait partie de la mise en page.
+    //
     // Le style inline l'emporterait sur les utilitaires `opacity-*` du parent :
     // on ne l'écrit que si un réglage a été demandé.
     <svg
       viewBox="0 0 100 100"
-      className={className}
+      overflow="visible"
+      className={`overflow-visible ${className}`}
       aria-hidden
       style={opacity === 1 ? undefined : { opacity }}
     >

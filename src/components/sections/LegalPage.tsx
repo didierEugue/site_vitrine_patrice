@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import type { BlobFamily } from "@/components/liquid/blob";
 import PageHeader from "@/components/sections/PageHeader";
 import { Container } from "@/components/ui/Section";
 
@@ -12,6 +13,7 @@ export default function LegalPage({
   lead,
   updatedAt,
   sections,
+  family,
   draft = false,
 }: {
   eyebrow: string;
@@ -19,6 +21,8 @@ export default function LegalPage({
   lead: string;
   updatedAt: string;
   sections: LegalSection[];
+  /** Le gabarit sert deux pages : chacune apporte sa propre silhouette. */
+  family: BlobFamily;
   /** Affiche l'avertissement « informations à compléter avant mise en ligne ». */
   draft?: boolean;
 }) {
@@ -32,7 +36,14 @@ export default function LegalPage({
 
   return (
     <>
-      <PageHeader eyebrow={eyebrow} title={title} lead={lead} tone="nuit" spin={1.8} />
+      <PageHeader
+        eyebrow={eyebrow}
+        title={title}
+        lead={lead}
+        family={family}
+        tone="nuit"
+        spin={1.8}
+      />
 
       <section className="bg-paper-50 py-16 sm:py-20">
         <Container>

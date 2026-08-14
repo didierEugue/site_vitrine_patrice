@@ -83,7 +83,7 @@ export default function HomePage() {
             {/* Forme liquide principale */}
             <Reveal delay={320} className="lg:col-span-5">
               <div className="relative mx-auto w-[74%] lg:w-full">
-                <ShapeStack tone="azur" frame="diamond" className="animate-float" />
+                <ShapeStack tone="azur" className="animate-float" />
 
                 {/* Médaillon flottant */}
                 <div className="bg-ink-900 text-paper-50 absolute -bottom-4 -left-2 max-w-[13rem] p-5 sm:-left-6">

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function LegalNoticePage() {
   return (
     <LegalPage
+      family="pebble"
       draft
       eyebrow="Informations légales"
       title="Mentions légales"

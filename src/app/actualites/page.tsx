@@ -23,6 +23,7 @@ export default function ArticlesPage() {
       <PageHeader
         index="01"
         eyebrow="Actualités"
+        family="voile"
         tone="glace"
         spin={2.2}
         title={

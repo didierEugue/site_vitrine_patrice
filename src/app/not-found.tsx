@@ -4,7 +4,10 @@ import { Container, Eyebrow } from "@/components/ui/Section";
 
 export default function NotFound() {
   return (
-    <section className="grid-paper flex min-h-screen items-center">
+    // `overflow-hidden` : la forme liquide déborde sa boîte (cf. LiquidShape) —
+    // sans cela elle pousse la largeur du document et crée un défilement
+    // horizontal sur mobile.
+    <section className="grid-paper relative flex min-h-screen items-center overflow-hidden">
       <Container className="py-32">
         <div className="grid items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-6">

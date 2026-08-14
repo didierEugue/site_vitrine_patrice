@@ -20,6 +20,7 @@ export default function ExpertisesPage() {
       <PageHeader
         index="01"
         eyebrow="Expertises"
+        family="galet"
         tone="azur"
         spin={0.6}
         title={

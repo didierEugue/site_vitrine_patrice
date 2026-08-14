@@ -61,11 +61,13 @@ fournie par le client : blobs à bords nets et dégradés francs. Palette ramen�
 logo — le vert et le magenta de la planche sont écartés.
 
 > **Règle de rareté — à tenir si le site évolue.**
-> — Les **cadres géométriques** (losange, cercle, carré, triangle) et les **petits signes**
->   (croix, ondulations, anneaux) n'apparaissent **qu'une fois sur tout le site** : dans le
->   héros d'accueil.
+> — Les **petits signes** (croix, ondulations, anneaux) n'apparaissent **qu'une fois sur
+>   tout le site** : dans le héros d'accueil. Les cadres géométriques filaires ont été
+>   retirés : la géométrie parasitait le liquide et lui donnait un contour net.
 > — **Une seule forme liquide par page** (deux au maximum sur l'accueil et sur Expertises,
 >   qui portent aussi le bloc « facturation 2026 »).
+> — **Une silhouette par page** : jamais la même famille sur deux pages voisines dans la
+>   navigation (voir le tableau plus bas).
 > — Partout ailleurs, la hiérarchie est portée par les **filets, les index chiffrés en
 >   monospace et les blocs encre**. Répétée à chaque section, la forme cesse d'être un
 >   accent et devient un motif de fond.
@@ -80,17 +82,39 @@ logo — le vert et le magenta de la planche sont écartés.
   permet le morphing SVG (`<animate attributeName="d">`) — impossible avec des tracés
   dessinés à la main. Génération déterministe, aucun `Math.random` : le rendu serveur et le
   rendu client produisent le même `d`.
-  - Deux réglages comptent : un **nombre de points impair** (avec un nombre pair les bosses
-    se font face et la forme retombe sur un carré arrondi) et un **écart de rayons franc**
-    (≈ 0,7 → 1,3 ; en deçà, on lit un cercle bosselé, pas une forme liquide).
+  - Trois réglages comptent : un **nombre de points impair** (avec un nombre pair les bosses
+    se font face et la forme retombe sur un carré arrondi), un **écart de rayons franc**
+    (≈ 0,7 → 1,3 ; en deçà, on lit un cercle bosselé, pas une forme liquide), et surtout la
+    **distribution** — alterner long/court donne une étoile quel que soit le nombre de
+    points, grouper les rayons longs d'un même côté donne une masse pleine et penchée.
+    C'est ce dernier réglage qui sépare vraiment deux familles.
 - **`LiquidShape.tsx`** — la forme animée. SMIL échappe aux règles CSS
   `prefers-reduced-motion`, d'où la lecture de la préférence en JS (`useReducedMotion`).
-- **`Marks.tsx`** — cadres filaires (losange, cercle, carré, triangle) et petits signes.
-- **`ShapeStack.tsx`** — l'unité visuelle : forme + forme fantôme décalée + cadre + signes.
-  Le cadre ne coïncide jamais avec le contour : c'est le décalage qui crée la tension.
+  Le SVG est en `overflow: visible` : le tracé dépasse largement la boîte `0–100`, et le
+  rogner produirait un bord droit net en plein vide. **Toute section qui accueille une
+  forme doit donc porter `overflow-hidden`**, sinon la forme élargit le document et crée un
+  défilement horizontal sur mobile.
+- **`Marks.tsx`** — les petits signes (croix, anneau, ondulation, point, triangle, carré).
+- **`ShapeStack.tsx`** — l'unité visuelle du héros : forme + forme fantôme décalée + signes.
 
-Trois familles de formes (`bold`, `pebble`, `drop`) et six dégradés (`azur`, `profond`,
-`aiguille`, `glace`, `nuit`, `cuivre`).
+Neuf familles de formes et six dégradés (`azur`, `profond`, `aiguille`, `glace`, `nuit`,
+`cuivre`). Affectation en vigueur — à respecter en ajoutant une page :
+
+| Page | Famille | Points | Registre |
+|---|---|---|---|
+| Accueil — héros | `bold` + `drop` | 7 | masse pleine + tache étirée |
+| Accueil / Expertises — bloc facturation | `onde` | 9 | alternance franche |
+| Le cabinet | `crete` | 5 | grands pans, angles francs |
+| Expertises | `galet` | 9 | groupée, charnue |
+| Facturation 2026 | `lame` | 5 | deux rayons longs voisins, biais marqué |
+| Actualités (liste) | `voile` | 7 | groupée d'un seul côté |
+| Article — Réglementaire / Outils / Gestion / Cabinet | `drop` / `bold` / `galet` / `crete` | — | une par rubrique |
+| Contact | `onde` | 9 | alternance franche |
+| Mentions légales | `pebble` | 7 | resserrée |
+| Confidentialité | `ourlet` | 11 | longues inflexions |
+| 404 | `bold` | 7 | masse pleine |
+
+L'espace client n'a **pas** de forme : son en-tête porte un repère chiffré à la place.
 
 ### Autres composants de rythme
 

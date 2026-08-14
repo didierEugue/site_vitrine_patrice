@@ -54,6 +54,7 @@ export default function CabinetPage() {
       <PageHeader
         index="01"
         eyebrow="Le cabinet"
+        family="crete"
         tone="glace"
         spin={1.1}
         title={

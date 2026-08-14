@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import LiquidShape, { type ShapeTone } from "@/components/liquid/LiquidShape";
+import type { BlobFamily } from "@/components/liquid/blob";
 import Reveal from "@/components/ui/Reveal";
 import { Container, Eyebrow } from "@/components/ui/Section";
 
@@ -10,12 +11,17 @@ import { Container, Eyebrow } from "@/components/ui/Section";
  * Une seule forme liquide, sans cadre géométrique ni petits signes : ce
  * vocabulaire est réservé au héros d'accueil. Répété sur huit pages, il
  * deviendrait un motif de fond et perdrait tout effet.
+ *
+ * `family` n'a pas de valeur par défaut : chaque page doit choisir la sienne.
+ * Une valeur par défaut ramènerait la silhouette unique qu'on cherche
+ * justement à éviter.
  */
 export default function PageHeader({
   index,
   eyebrow,
   title,
   lead,
+  family,
   tone = "azur",
   spin = 0,
   children,
@@ -24,6 +30,8 @@ export default function PageHeader({
   eyebrow: string;
   title: ReactNode;
   lead?: ReactNode;
+  /** Silhouette de la forme liquide — distincte d'une page à l'autre. */
+  family: BlobFamily;
   tone?: ShapeTone;
   spin?: number;
   children?: ReactNode;
@@ -43,7 +51,7 @@ export default function PageHeader({
 
           <Reveal delay={140} className="lg:col-span-3 lg:col-start-10">
             <LiquidShape
-              family="pebble"
+              family={family}
               tone={tone}
               spin={spin}
               duration={20}

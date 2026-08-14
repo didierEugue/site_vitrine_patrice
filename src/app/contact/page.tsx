@@ -28,6 +28,7 @@ export default function ContactPage() {
       <PageHeader
         index="01"
         eyebrow="Contact"
+        family="onde"
         tone="cuivre"
         spin={0.9}
         title={

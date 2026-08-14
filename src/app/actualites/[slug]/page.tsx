@@ -10,6 +10,7 @@ import Reveal from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
 import { articles, formatDate, getArticle, sortedArticles, type Block } from "@/content/articles";
 import type { ShapeTone } from "@/components/liquid/LiquidShape";
+import type { BlobFamily } from "@/components/liquid/blob";
 import { site } from "@/content/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -19,6 +20,18 @@ const TONE_BY_CATEGORY: Record<string, ShapeTone> = {
   Outils: "azur",
   Gestion: "glace",
   Cabinet: "profond",
+};
+
+/**
+ * La silhouette suit la rubrique, comme la couleur : deux fiches de rubriques
+ * différentes ne doivent pas se ressembler. Aucune ne reprend `ourlet`, qui
+ * appartient à la page liste — on y arrive juste avant.
+ */
+const FAMILY_BY_CATEGORY: Record<string, BlobFamily> = {
+  Réglementaire: "drop",
+  Outils: "bold",
+  Gestion: "galet",
+  Cabinet: "crete",
 };
 
 /** Pré-rend toutes les fiches au build : pages statiques, servies depuis le CDN. */
@@ -118,6 +131,7 @@ export default async function ArticlePage({ params }: Params) {
 
       <PageHeader
         eyebrow={article.category}
+        family={FAMILY_BY_CATEGORY[article.category] ?? "pebble"}
         tone={TONE_BY_CATEGORY[article.category] ?? "azur"}
         spin={article.slug.length * 0.3}
         title={article.title}

@@ -82,6 +82,7 @@ export default function EInvoicingPage() {
       <PageHeader
         index="01"
         eyebrow="Réforme réglementaire"
+        family="lame"
         tone="aiguille"
         spin={1.9}
         title={

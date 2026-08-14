@@ -18,8 +18,10 @@ const POINTS = [
 export default function EInvoiceBlock() {
   return (
     <section className="bg-ink-900 text-paper-100 grain relative overflow-hidden">
+      {/* `onde` : ce bloc cohabite avec `bold` et `drop` sur l'accueil, et avec
+          `galet` sur les expertises — il lui faut sa propre silhouette. */}
       <LiquidShape
-        family="drop"
+        family="onde"
         tone="aiguille"
         spin={1.2}
         duration={21}
