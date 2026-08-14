@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/* ==================================================================
+   CAP CONSEILS — Système de design
+
+   Trois partis pris, pour sortir du site de cabinet générique :
+   1. Fond papier, pas de dégradés sombres à toutes les sections.
+      Le sombre devient un bloc d'accent, donc il compte.
+   2. Titrage en serif éditorial + libellés en monospace technique.
+      Le tout-sans-serif est ce qui fait « gabarit ».
+   3. Formes liquides vectorielles à bords nets (cf. components/liquid),
+      cadres filaires et petits signes — le vocabulaire graphique de la
+      planche de référence, ramené à la palette du logo.
+================================================================== */
+
+@theme {
+  /* Encre : bleu-noir, tiré du fond du logo */
+  --color-ink-950: #05080f;
+  --color-ink-900: #0a0f1c;
+  --color-ink-800: #121a2c;
+  --color-ink-700: #1c2740;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe7fe;
+  --color-brand-200: #bed3fd;
+  --color-brand-300: #91b6fb;
+  --color-brand-400: #5d90f6;
+  --color-brand-500: #2a63be;
+  --color-brand-600: #1f4e9c;
+  --color-brand-700: #1a3f7d;
+  --color-brand-800: #183561;
+  --color-brand-900: #142c50;
+
+  --color-aqua-200: #c3edfb;
+  --color-aqua-300: #7cdcf7;
+  --color-aqua-400: #2ec4f0;
+  --color-aqua-500: #12a6d4;
+
+  --color-signal-400: #e04a63;
+  --color-signal-500: #c81f3c;
+  --color-signal-600: #a30f2b;
+  --color-ember-400: #ff8a5b;
+
+  /* Papier : le fond par défaut du site */
+  --color-paper-50: #fbfaf7;
+  --color-paper-100: #f4f1ea;
+  --color-paper-200: #e8e3d8;
+  --color-paper-300: #d8d2c4;
+
+  --color-slate-400: #8b8f98;
+  --color-slate-500: #6b7079;
+  --color-slate-600: #4a5560;
+
+  --font-display: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-tech), ui-monospace, "SF Mono", monospace;
+
+  --shadow-plate: 0 1px 0 rgb(10 15 28 / 0.04), 0 18px 40px -28px rgb(10 15 28 / 0.35);
+  --shadow-plate-lg: 0 2px 0 rgb(10 15 28 / 0.05), 0 44px 80px -40px rgb(10 15 28 / 0.45);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-float: float 14s ease-in-out infinite;
+  --animate-float-slow: float 22s ease-in-out infinite reverse;
+  --animate-spin-slow: spin 46s linear infinite;
+  --animate-marquee: marquee 34s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3.5%, 0);
+  }
+}
+
+/* Oscillation de l'aiguille de la boussole (components/brand/CompassMark). */
+@keyframes needle {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-h: 4.75rem;
+  }
+
+  * {
+    border-color: var(--color-paper-200);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 2rem);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-paper-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  h4,
+  h5 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-ink-900);
+    color: var(--color-paper-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-aqua-400);
+    outline-offset: 3px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilitaires maison
+------------------------------------------------------------------ */
+
+/* Libellé technique : la voix « comptable » du site. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Chiffres alignés, pour les repères et les index. */
+@utility numeric {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* L'italique du serif : l'accent des titres. */
+@utility accent {
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+/* Rythme vertical des sections. */
+@utility section {
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+/* Filet horizontal fin, récurrent dans la mise en page. */
+@utility rule {
+  border-top: 1px solid var(--color-paper-200);
+}
+
+/* Trame de fond discrète, façon papier millimétré. */
+@utility grid-paper {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-ink-900) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-ink-900) 5%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Grain fin sur les blocs sombres. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* Lien à soulignement qui se déploie depuis la gauche. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.45s var(--ease-out-expo);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Révélation au scroll (pilotée par components/ui/Reveal.tsx) */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Les lignes de titre qui montent une à une. */
+.line-rise > span {
+  display: block;
+  overflow: hidden;
+}
+.line-rise > span > span {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  transition: transform 0.95s var(--ease-out-expo);
+  transition-delay: var(--line-delay, 0ms);
+}
+[data-reveal="shown"] .line-rise > span > span,
+.line-rise[data-reveal="shown"] > span > span {
+  transform: none;
+}
+
+/* ------------------------------------------------------------------
+   Accessibilité
+------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .line-rise > span > span {
+    transform: none;
+  }
+}
