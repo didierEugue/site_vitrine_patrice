@@ -9,6 +9,9 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; freq: "weekly" | "m
   { path: "/expertises", priority: 0.9, freq: "monthly" },
   { path: "/facturation-electronique", priority: 0.9, freq: "weekly" },
   { path: "/actualites", priority: 0.8, freq: "weekly" },
+  { path: "/outils", priority: 0.7, freq: "monthly" },
+  { path: "/outils/calculateurs", priority: 0.7, freq: "monthly" },
+  { path: "/outils/echeancier", priority: 0.7, freq: "monthly" },
   { path: "/espace-client", priority: 0.7, freq: "monthly" },
   { path: "/contact", priority: 0.7, freq: "monthly" },
 ];

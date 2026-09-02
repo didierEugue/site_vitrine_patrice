@@ -29,12 +29,16 @@ export default function LegalNoticePage() {
                 comptable, et <strong>FINEXO AUDIT</strong>, société de commissariat aux comptes.
               </p>
               <ul className="space-y-1.5">
-                <li>Forme juridique et capital social : {TODO}</li>
+                <li>
+                  Dénomination : {site.legal.entity} — {site.legal.form},{" "}
+                  {site.legal.activity.toLowerCase()}
+                </li>
+                <li>Capital social : {site.legal.capital}</li>
                 <li>
                   Siège social : {site.contact.address.street},{" "}
                   {site.contact.address.postalCode} {site.contact.address.city}
                 </li>
-                <li>RCS / SIREN : {TODO}</li>
+                <li>SIREN : {site.legal.siren}</li>
                 <li>Numéro de TVA intracommunautaire : {TODO}</li>
                 <li>Téléphone : {site.contact.phone}</li>
                 <li>E-mail : {site.contact.email}</li>
@@ -49,12 +53,13 @@ export default function LegalNoticePage() {
             <>
               <p>
                 CAP CONSEILS est inscrite au tableau de l&apos;Ordre des experts-comptables (conseil
-                régional : {TODO}, numéro d&apos;inscription : {TODO}). L&apos;activité est soumise
+                régional de La Réunion, numéro d&apos;inscription : {TODO}). L&apos;activité est soumise
                 au code de déontologie des professionnels de l&apos;expertise comptable.
               </p>
               <p>
                 FINEXO AUDIT est inscrite sur la liste des commissaires aux comptes auprès de la
-                Compagnie régionale de {TODO} (numéro : {TODO}), sous le contrôle de la Haute
+                Compagnie régionale des commissaires aux comptes de Saint-Denis de La Réunion
+                (numéro : {TODO}), sous le contrôle de la Haute
                 autorité de l&apos;audit.
               </p>
               <p>

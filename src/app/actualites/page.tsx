@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import ArticleCard from "@/components/cards/ArticleCard";
 import CtaBlock from "@/components/sections/CtaBlock";
+import NewsletterForm from "@/components/sections/NewsletterForm";
 import PageHeader from "@/components/sections/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
@@ -68,6 +69,31 @@ export default function ArticlesPage() {
                 <ArticleCard article={a} />
               </Reveal>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Lettre du cabinet — ancre /newsletter de l'ancien site */}
+      <section id="lettre" className="bg-ink-900 text-paper-200 grain relative overflow-hidden scroll-mt-24">
+        <Container className="section relative z-10">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+            <Reveal className="lg:col-span-6">
+              <p className="label text-aqua-300">La lettre du cabinet</p>
+              <h2 className="text-paper-50 mt-6 text-[clamp(2rem,4.4vw,3.2rem)]">
+                Une fois par mois,
+                <br />
+                ce qui a <span className="accent">changé</span>.
+              </h2>
+              <p className="text-paper-200/65 mt-7 max-w-md leading-relaxed">
+                Nous suivons l&apos;actualité fiscale, sociale et comptable toute l&apos;année. Nous
+                en tirons une lettre courte : ce qui bouge, à partir de quand, et ce que ça change
+                concrètement pour une entreprise de La Réunion.
+              </p>
+            </Reveal>
+
+            <Reveal delay={140} className="lg:col-span-5 lg:col-start-8">
+              <NewsletterForm />
+            </Reveal>
           </div>
         </Container>
       </section>

@@ -144,6 +144,23 @@ export const BLOB_STATES: Record<string, number[][]> = {
     [1.2, 1.04, 1.22, 0.82, 0.88, 0.8, 1.06, 1.18, 1.1, 0.9, 0.98],
   ],
 
+  // 6 points en alternance régulière : trois pointes franches, trois creux.
+  // La plus symétrique du jeu — assumée comme telle, elle sert de repère
+  // « outil » plutôt que d'accent.
+  ecume: [
+    [1.32, 0.76, 1.24, 0.72, 1.3, 0.78],
+    [0.78, 1.3, 0.74, 1.28, 0.76, 1.34],
+    [1.26, 0.8, 1.34, 0.74, 1.2, 0.82],
+  ],
+
+  // 10 points : une longue montée sur les deux tiers du contour puis une
+  // retombée courte. Silhouette basse et étalée, façon relief.
+  dune: [
+    [0.78, 0.84, 0.94, 1.08, 1.22, 1.34, 1.28, 1.06, 0.88, 0.8],
+    [0.82, 0.8, 0.88, 1.02, 1.18, 1.32, 1.36, 1.14, 0.94, 0.84],
+    [0.8, 0.9, 1.0, 1.14, 1.3, 1.26, 1.2, 0.98, 0.84, 0.86],
+  ],
+
   // 7 points, rayons longs groupés d'un seul côté : une voile gonflée.
   voile: [
     [1.44, 1.2, 0.72, 0.68, 0.76, 1.0, 1.3],
