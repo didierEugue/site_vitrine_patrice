@@ -163,6 +163,8 @@ Le formulaire de contact est protégé par un piège à robots et une limitation
 | 6 | Redirections 301 depuis les URL réellement indexées de l'ancien site (Search Console / logs) | `next.config.ts` |
 | 7 | Logo vectoriel officiel — la marque actuelle est une reconstitution SVG du JPG fourni | `src/components/brand/CompassMark.tsx` |
 | 8 | Photos de l'équipe et des locaux si le cabinet en fournit | — |
+| 9 | Coordonnées GPS exactes des quatre bureaux (actuellement approchées) | `src/content/site.ts` |
+| 10 | Logos ordinaux en vectoriel — les PNG actuels sont extraits d'un PDF, basse définition | `public/ordres/` |
 
 ### Décision en attente : périmètre de l'espace client
 

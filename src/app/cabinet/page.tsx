@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import CtaBlock from "@/components/sections/CtaBlock";
 import PageHeader from "@/components/sections/PageHeader";
@@ -127,10 +128,22 @@ export default function CabinetPage() {
                   un à <span className="accent text-aqua-300">Paris</span>.
                 </h2>
                 <p className="text-paper-200/70 mt-7 max-w-md leading-relaxed">
-                  Le Port, Saint-Denis, L&apos;Étang-Salé et Paris. Tous les sites travaillent sur
-                  les mêmes outils et le même référentiel documentaire : votre dossier suit, quel
-                  que soit l&apos;interlocuteur. Le cabinet s&apos;appuie également sur un relais à
-                  Madagascar pour le traitement documentaire.
+                  Le Port, Saint-Denis, L&apos;Étang-Salé et Paris : nos équipes travaillent avec les
+                  mêmes outils et selon un référentiel documentaire commun. Votre dossier bénéficie
+                  ainsi d&apos;une continuité de suivi, quel que soit votre interlocuteur ou le site
+                  auquel vous êtes rattaché.
+                </p>
+
+                <p className="text-paper-200/70 mt-6 max-w-md leading-relaxed">
+                  Le cabinet s&apos;appuie également sur{" "}
+                  <strong className="text-paper-50 font-medium">
+                    une équipe dédiée basée à Madagascar
+                  </strong>
+                  , qui intervient dans le traitement documentaire et certaines prestations
+                  administratives. Cette organisation nous permet de renforcer notre capacité de
+                  production, d&apos;améliorer la réactivité de nos équipes et de proposer à nos
+                  clients des services administratifs complémentaires, tout en conservant au sein du
+                  cabinet le pilotage, le contrôle et la relation client.
                 </p>
               </Reveal>
             </div>
@@ -160,7 +173,7 @@ export default function CabinetPage() {
         <Marquee
           items={[
             "Ordre des experts-comptables",
-            "Compagnie nationale des commissaires aux comptes",
+            "Compagnie régionale des commissaires aux comptes de La Réunion",
             "Le Port",
             "Saint-Denis",
             "L'Étang-Salé",
@@ -199,18 +212,41 @@ export default function CabinetPage() {
             ))}
           </dl>
 
-          {/* Mentions ordinales — obligatoires pour la profession (brief §6) */}
+          {/* Mentions ordinales — texte imposé par le cabinet (mail du 23/08/2026) */}
           <Reveal delay={120} className="bg-paper-100 mt-16 max-w-3xl p-8">
             <p className="text-sm leading-relaxed text-slate-600">
               <strong className="text-ink-900 font-medium">Mentions professionnelles.</strong> Cap
-              Conseils est inscrite au tableau de l&apos;Ordre des experts-comptables. Finexo Audit
-              est inscrite à la Compagnie nationale des commissaires aux comptes. Numéros
-              d&apos;inscription, forme juridique et capital social figurent dans les{" "}
+              Conseils est inscrite au tableau de l&apos;Ordre des experts-comptables de la Réunion.
+              Finexo Audit est inscrite à la Compagnie Régionale des commissaires aux comptes de la
+              Réunion. Numéros d&apos;inscription, forme juridique et capital social figurent dans
+              les{" "}
               <a href="/mentions-legales" className="text-ink-900 link-underline">
                 mentions légales
               </a>
               .
             </p>
+
+            {/* Logos ordinaux fournis par le cabinet (PDF du 24/08/2026) */}
+            <ul className="border-paper-300 mt-8 flex flex-wrap items-center gap-x-8 gap-y-6 border-t pt-8">
+              {site.accreditations.map((a) => (
+                <li key={a.slug} className="flex items-center gap-4">
+                  <span className="bg-paper-50 border-paper-200 flex h-16 w-32 items-center justify-center rounded-lg border px-3 py-2">
+                    <Image
+                      src={a.src}
+                      alt={a.alt}
+                      width={a.width}
+                      height={a.height}
+                      className="h-auto max-h-full w-auto max-w-full object-contain"
+                    />
+                  </span>
+                  <span className="max-w-[13rem] text-xs leading-relaxed text-slate-500">
+                    <strong className="text-ink-900 font-medium">{a.entity}</strong>
+                    <br />
+                    {a.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </Container>
 

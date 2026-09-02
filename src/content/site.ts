@@ -33,6 +33,9 @@ export const site = {
 
   /**
    * Les quatre bureaux du cabinet.
+   * ⚠️ `coords` : géolocalisation approchée (centre de la voie), utilisée pour la
+   * carte GPS demandée le 23/08/2026. À affiner sur le point d'entrée réel de
+   * chaque bureau avant mise en ligne.
    * ⚠️ Horaires : Patrice a indiqué « lundi à mardi » puis « le vendredi ».
    * Le mercredi et le jeudi ne sont pas couverts — à confirmer avant mise en
    * ligne (il s'agit vraisemblablement de « lundi à jeudi »).
@@ -40,6 +43,7 @@ export const site = {
   offices: [
     {
       slug: "le-port",
+      coords: { lat: -20.9410, lon: 55.2980 },
       name: "Le Port",
       role: "Siège social",
       street: "55, rue Estelle Darsanesing",
@@ -49,6 +53,7 @@ export const site = {
     },
     {
       slug: "saint-denis",
+      coords: { lat: -20.8800, lon: 55.4520 },
       name: "Saint-Denis",
       role: "Bureau",
       street: "28, rue La Bourdonnais",
@@ -58,6 +63,7 @@ export const site = {
     },
     {
       slug: "etang-sale",
+      coords: { lat: -21.2680, lon: 55.3370 },
       name: "L'Étang-Salé",
       role: "Bureau",
       street: "4, place de la Principauté d'Andorre",
@@ -67,6 +73,7 @@ export const site = {
     },
     {
       slug: "paris",
+      coords: { lat: 48.8340, lon: 2.4060 },
       name: "Paris",
       role: "Bureau",
       street: "29, boulevard Poniatowski",
@@ -102,6 +109,49 @@ export const site = {
   /** Rappel process client, repris de la signature mail du cabinet. */
   monthlyDeadline: 10,
 
+  /**
+   * Identité légale, relevée sur le papier en-tête facture 2022 transmis par
+   * le cabinet le 24/08/2026. TVA et numéros d'inscription ordinale restent à
+   * obtenir.
+   */
+  legal: {
+    entity: "Cap Conseils Océan Indien",
+    form: "SARL",
+    activity: "Société d'expertise comptable",
+    capital: "50 000 €",
+    siren: "489 543 660",
+    tagline: "Comptabilité · Audit · Patrimoine — Conseils",
+  },
+
+  /**
+   * Logos ordinaux à afficher sur le site, demandés par Patrice DALLEAU
+   * (PDF « Logo Crcc et Croec Réunion », 24/08/2026).
+   * Fichiers extraits du PDF : basse définition, à remplacer par les versions
+   * vectorielles officielles avant mise en ligne.
+   */
+  accreditations: [
+    {
+      slug: "ordre-experts-comptables",
+      src: "/ordres/ordre-experts-comptables.png",
+      width: 252,
+      height: 50,
+      alt: "Ordre des experts-comptables — Conseil national",
+      entity: "CAP CONSEILS",
+      label: "Inscrite au tableau de l'Ordre des experts-comptables de La Réunion",
+      href: "https://www.experts-comptables.fr",
+    },
+    {
+      slug: "crcc-reunion",
+      src: "/ordres/crcc-reunion.png",
+      width: 350,
+      height: 177,
+      alt: "Compagnie régionale des commissaires aux comptes de Saint-Denis de La Réunion",
+      entity: "FINEXO AUDIT",
+      label: "Inscrit à la CRCC de Saint-Denis de La Réunion",
+      href: "https://www.cncc.fr",
+    },
+  ],
+
   social: {
     linkedin: `https://www.linkedin.com/company/${TODO}`,
   },
@@ -113,6 +163,7 @@ export const nav = [
   { href: "/expertises", label: "Expertises" },
   { href: "/facturation-electronique", label: "Facturation 2026" },
   { href: "/actualites", label: "Actualités" },
+  { href: "/outils", label: "Outils" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

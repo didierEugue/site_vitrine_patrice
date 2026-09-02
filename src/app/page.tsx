@@ -133,7 +133,7 @@ export default function HomePage() {
         <Marquee items={TICKER} />
       </div>
 
-      {/* ═════════════════════════════════════ Manifeste */}
+      {/* ═════════════════════════════════════ Manifeste — texte du cabinet (mail du 23/08/2026) */}
       <section className="section">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12">
@@ -142,27 +142,38 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={100} className="lg:col-span-8 lg:col-start-5">
-              <p className="font-display text-[clamp(1.6rem,3.2vw,2.5rem)] leading-[1.22]">
-                La conformité est le socle, pas la destination. Un cabinet doit produire des comptes
-                justes — et surtout{" "}
-                <span className="accent text-brand-600">dire ce qu&apos;ils veulent dire</span>.
-                Nous tenons la comptabilité au mois, pas à l&apos;exercice, pour que les chiffres
-                servent encore quand la décision se prend.
+              <h2 className="text-[clamp(2.1rem,4.4vw,3.2rem)] leading-[1.1]">
+                Une relation fondée sur la{" "}
+                <span className="accent text-brand-600">proximité</span> et
+                l&apos;engagement.
+              </h2>
+
+              <p className="mt-9 max-w-2xl text-[1.04rem] leading-relaxed text-slate-600">
+                Chez CAP CONSEILS, nous considérons que l&apos;expertise comptable ne se limite pas
+                à produire des comptes. Notre ambition est de devenir un{" "}
+                <strong className="text-ink-900 font-medium">partenaire durable du dirigeant</strong>
+                , capable de comprendre son activité, d&apos;anticiper ses enjeux et de
+                l&apos;accompagner dans ses décisions.
+              </p>
+
+              <p className="font-display mt-10 text-[clamp(1.35rem,2.6vw,1.9rem)] leading-[1.25]">
+                Notre approche repose sur trois principes : la proximité, la réactivité et
+                l&apos;engagement.
               </p>
 
               <div className="mt-14 grid gap-10 sm:grid-cols-3">
                 {[
                   [
-                    "Au rythme du mois",
-                    "Une comptabilité à jour chaque mois vaut mieux qu'un bilan parfait douze mois trop tard.",
+                    "La proximité",
+                    "Grâce à notre présence territoriale et à des interlocuteurs identifiés.",
                   ],
                   [
-                    "Outillé, pas subi",
-                    "Pennylane, Microsoft 365, GED : nous testons chez nous avant de déployer chez vous.",
+                    "La réactivité",
+                    "Grâce à une organisation structurée, des outils communs et une équipe dimensionnée pour répondre efficacement aux besoins de nos clients.",
                   ],
                   [
-                    "Deux métiers séparés",
-                    "Expertise comptable et audit légal dans deux structures, comme la déontologie l'impose.",
+                    "L'engagement",
+                    "Par une volonté constante de sécuriser l'information financière, d'apporter des réponses concrètes et de contribuer au développement des entreprises que nous accompagnons.",
                   ],
                 ].map(([title, body], i) => (
                   <Reveal key={title} delay={i * 90} className="rule pt-6">
@@ -171,10 +182,17 @@ export default function HomePage() {
                   </Reveal>
                 ))}
               </div>
+
+              <Reveal delay={300}>
+                <p className="bg-paper-100 font-display mt-14 p-8 text-[clamp(1.2rem,2.2vw,1.6rem)] leading-[1.3]">
+                  CAP CONSEILS, c&apos;est ainsi une organisation à taille humaine, dotée de moyens
+                  modernes et d&apos;une capacité de production élargie, au service d&apos;un
+                  accompagnement de proximité et de long terme.
+                </p>
+              </Reveal>
             </Reveal>
           </div>
         </Container>
-
       </section>
 
       {/* ═════════════════════════════════════ Expertises */}

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Papier en-tête — CAP CONSEILS</title>
+<style>
+  /*
+    Papier en-tête A4, prêt à imprimer ou à exporter en PDF
+    (Ctrl+P → Destination « Enregistrer au format PDF », marges « Aucune »,
+    « Graphiques d'arrière-plan » coché).
+
+    Refonte du modèle 2022 :
+    — la bande de couleurs passe de six blocs à trois, dans l'ordre du logo ;
+    — le bloc légal du pied de page est composé sur une seule colonne lisible
+      au lieu de quatre lignes centrées de tailles différentes ;
+    — la baseline « Comptabilité Audit Patrimoine — Conseils » est conservée :
+      c'est elle qui explique l'acronyme C.A.P.
+  */
+
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --navy: #1F4E9C;
+    --ink: #0a0f1c;
+    --cyan: #2EC4F0;
+    --red: #C81F3C;
+    --slate: #4a5560;
+    --mute: #8b8f98;
+    --rule: #e8e3d8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #d8d2c4;
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    color: var(--slate);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 16mm 20mm 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(10, 15, 28, .18);
+  }
+
+  /* ------------------------------------------------------------- En-tête */
+
+  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16mm; }
+
+  /* Logo officiel fourni par le cabinet, recadré sur son contenu utile.
+     Il porte déjà sa typographie et sa baseline : on ne recompose rien. */
+  .brand img { width: 34mm; height: auto; display: block; }
+
+  .header-right { text-align: right; padding-top: 2mm; }
+  .baseline { font-size: 9pt; font-weight: 600; color: var(--navy); letter-spacing: .02em; }
+  .baseline b { color: var(--red); }
+  .header-right img { width: 26mm; height: auto; margin-top: 4mm; display: inline-block; }
+
+  /* Bande de couleurs : rouge court, cyan bref, bleu long — l'ordre du logo. */
+  .bar { display: flex; height: 3.2mm; margin-top: 7mm; }
+  .bar span:nth-child(1) { flex: 18; background: var(--red); }
+  .bar span:nth-child(2) { flex: 9;  background: var(--cyan); }
+  .bar span:nth-child(3) { flex: 73; background: var(--navy); }
+  .bar--footer { margin: 0 0 5mm; }
+  .bar--footer span:nth-child(1) { flex: 73; background: var(--navy); }
+  .bar--footer span:nth-child(2) { flex: 9;  background: var(--cyan); }
+  .bar--footer span:nth-child(3) { flex: 18; background: var(--red); }
+
+  /* --------------------------------------------------------------- Corps */
+
+  main { flex: 1; padding: 14mm 0; font-size: 10.5pt; line-height: 1.65; }
+
+  .recipient { margin-left: 55%; margin-bottom: 12mm; font-size: 10.5pt; line-height: 1.5; }
+  .place-date { text-align: right; margin-bottom: 10mm; color: var(--slate); }
+  .placeholder { color: #b9bdc4; }
+
+  /* ------------------------------------------------------------ Pied de page */
+
+  footer { margin: 0 -20mm; padding: 0 20mm 8mm; }
+
+  .legal { font-size: 7.5pt; line-height: 1.55; color: var(--slate); text-align: center; }
+  .legal strong { color: var(--ink); }
+  .legal .sep { color: var(--rule); padding: 0 .4em; }
+  .legal a { color: var(--navy); text-decoration: none; }
+  .legal .iban { color: var(--mute); font-style: italic; margin-top: 1mm; }
+
+  /* Marque de l'Ordre des experts-comptables (PDF du 24/08, point 3) :
+     posée en regard de la mention d'inscription, c'est ce qu'elle atteste. */
+  .footer-row { display: flex; align-items: center; gap: 6mm; }
+  .footer-row .legal { flex: 1; min-width: 0; }
+  .footer-row .oec { width: 15mm; height: auto; flex: none; }
+  /* Chaque mention reste d'un seul tenant : une adresse coupée en plein mot
+     est la faute classique des pieds de page composés en flex. */
+  .legal .nb { white-space: nowrap; }
+
+  @media print {
+    body { background: #fff; }
+    .sheet { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header>
+    <div class="brand">
+      <img src="assets/logo-full.png" alt="CAP CONSEILS — Stratégie, Orientation, Performance">
+    </div>
+
+    <div class="header-right">
+      <div class="baseline"><b>C</b>omptabilité <b>A</b>udit <b>P</b>atrimoine — <b>C</b>onseils</div>
+      <img src="assets/label-co-pilotes.png" alt="Le Label Co-pilotes">
+    </div>
+  </header>
+
+  <div class="bar"><span></span><span></span><span></span></div>
+
+  <main>
+    <div class="recipient placeholder">
+      Destinataire<br>
+      Raison sociale<br>
+      Adresse<br>
+      Code postal — Ville
+    </div>
+
+    <div class="place-date placeholder">Le Port, le [date]</div>
+
+    <p class="placeholder">Objet : […]</p>
+    <p class="placeholder">Madame, Monsieur,</p>
+    <p class="placeholder">[Corps du courrier]</p>
+  </main>
+
+  <footer>
+    <div class="bar bar--footer"><span></span><span></span><span></span></div>
+
+    <div class="footer-row">
+    <div class="legal">
+      <span class="nb"><strong>Cap Conseils Océan Indien</strong> — SARL, société d'expertise comptable</span>
+      <span class="sep">|</span> <span class="nb">Capital 50 000 €</span>
+      <span class="sep">|</span> <span class="nb">SIREN 489 543 660</span><br>
+      <span class="nb">55, rue Estelle Darsanesing — 97420 Le Port</span>
+      <span class="sep">|</span> <span class="nb">Tél. 0262 55 33 12</span>
+      <span class="sep">|</span> <span class="nb"><a href="https://www.capconseils.net">www.capconseils.net</a></span><br>
+      <span class="nb">Inscrite au tableau de l'Ordre des experts-comptables — Conseil régional de La Réunion</span>
+      <div class="iban">IBAN : FR76-1990-6009-7490-0137-7565-043</div>
+    </div>
+
+    <img class="oec" src="assets/oec-mark.png" alt="Ordre des experts-comptables">
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

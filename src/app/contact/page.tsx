@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import ContactForm from "@/components/sections/ContactForm";
+import OfficeMap from "@/components/sections/OfficeMap";
 import PageHeader from "@/components/sections/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import { Container, SectionHeading } from "@/components/ui/Section";
@@ -136,6 +137,11 @@ export default function ContactPage() {
               </Reveal>
             ))}
           </ul>
+
+          {/* Carte GPS des bureaux — demandée par le cabinet (mail du 23/08/2026) */}
+          <Reveal delay={120} className="mt-16">
+            <OfficeMap />
+          </Reveal>
         </Container>
       </section>
     </>

@@ -105,6 +105,23 @@ Demandes complémentaires du même échange :
 >    couverts. Il s'agit vraisemblablement de « lundi à jeudi », à confirmer.
 > 2. **URL exactes** du portail client Pennylane et du SharePoint du cabinet.
 
+## 6 ter. Corrections demandées le 23/08/2026 — intégrées
+
+| # | Demande | Traitement |
+|---|---|---|
+| 1 | Grossir le logo et la police « Cap Conseils » | Marque 36 → 48/56 px, nom en `text-2xl`/`1.75rem`, hauteur d'en-tête portée à 5,75 rem (`Logo.tsx`, `globals.css`) |
+| 2 | Titre « Une relation fondée sur la proximité et l'engagement » | Titre de la section « Notre position » de l'accueil (`src/app/page.tsx`) |
+| 3 | Texte « partenaire durable du dirigeant » + les trois principes | Même section : chapeau, les trois principes en colonnes, phrase de clôture en encadré |
+| 4 | Texte des quatre sites + équipe dédiée à Madagascar | Section « Implantations » de la page cabinet (`src/app/cabinet/page.tsx`) |
+| 5 | Mentions professionnelles (Ordre des EC **de la Réunion**, CRCC **régionale** de la Réunion) | Page cabinet, bandeau défilant et pied de page corrigés |
+| 6 | Logo de l'Ordre des experts-comptables | Affiché en pied de page **et** sous les mentions professionnelles de la page cabinet |
+| 7 | Carte GPS des bureaux | `OfficeMap` sur la page contact : fond OpenStreetMap, sélecteur des quatre bureaux, affichage après clic, lien « Itinéraire ». CSP ouverte sur `frame-src https://www.openstreetmap.org` |
+
+> ⚠️ Les coordonnées GPS des quatre bureaux (`site.offices[].coords`) sont approchées
+> (centre de la voie). À caler sur le point d'entrée réel de chaque bureau avant mise en ligne.
+
+---
+
 ---
 
 ## 7. Points ouverts / à confirmer avec Patrice

@@ -23,6 +23,8 @@ const securityHeaders = [
       "img-src 'self' data: blob:",
       "font-src 'self' data:",
       "connect-src 'self'",
+      // Carte GPS des bureaux : fond OpenStreetMap en iframe, seul domaine tiers autorisé.
+      "frame-src https://www.openstreetmap.org",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -55,6 +57,15 @@ const nextConfig: NextConfig = {
       { source: "/actualite", destination: "/actualites", permanent: true },
       { source: "/blog", destination: "/actualites", permanent: true },
       { source: "/nous-contacter", destination: "/contact", permanent: true },
+      // Outils de l'ancien site, repris sous /outils
+      { source: "/calculators", destination: "/outils/calculateurs", permanent: true },
+      { source: "/calculateurs", destination: "/outils/calculateurs", permanent: true },
+      { source: "/calendar", destination: "/outils/echeancier", permanent: true },
+      { source: "/calendrier", destination: "/outils/echeancier", permanent: true },
+      { source: "/newsletter", destination: "/actualites#lettre", permanent: true },
+      // Rubriques non reprises : redirigées vers l'équivalent le plus proche
+      { source: "/documentation", destination: "/espace-client", permanent: true },
+      { source: "/indices", destination: "/outils", permanent: true },
       { source: "/mentions", destination: "/mentions-legales", permanent: true },
     ];
   },

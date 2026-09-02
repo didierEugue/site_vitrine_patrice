@@ -20,16 +20,16 @@ export default function Logo({
     >
       <CompassMark
         idPrefix={light ? "logo-l" : "logo-d"}
-        className="h-9 w-9 shrink-0 transition-transform duration-700 group-hover:rotate-180"
+        className="h-12 w-12 shrink-0 transition-transform duration-700 group-hover:rotate-180 sm:h-14 sm:w-14"
       />
       <span className="flex flex-col leading-none">
         <span
-          className={`font-display text-xl whitespace-nowrap ${light ? "text-paper-50" : "text-ink-900"}`}
+          className={`font-display text-2xl whitespace-nowrap sm:text-[1.75rem] ${light ? "text-paper-50" : "text-ink-900"}`}
         >
           Cap Conseils
         </span>
         <span
-          className={`label mt-1 text-[0.55rem] ${light ? "text-aqua-300/70" : "text-slate-400"}`}
+          className={`label mt-1.5 text-[0.62rem] ${light ? "text-aqua-300/70" : "text-slate-400"}`}
         >
           Stratégie · Orientation · Performance
         </span>

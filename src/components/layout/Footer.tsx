@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import CompassMark from "@/components/brand/CompassMark";
@@ -24,8 +25,9 @@ export default function Footer() {
 
             <p className="text-paper-200/55 mt-6 max-w-sm text-sm leading-relaxed">
               {site.legalName}. Cabinet d&apos;expertise comptable et de commissariat aux comptes,
-              inscrit à l&apos;Ordre des experts-comptables et à la Compagnie nationale des
-              commissaires aux comptes.
+              Cap Conseils est inscrite au tableau de l&apos;Ordre des
+              experts-comptables de La Réunion ; Finexo Audit est inscrite à la Compagnie régionale
+              des commissaires aux comptes de La Réunion.
             </p>
           </div>
 
@@ -100,6 +102,35 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Logos ordinaux — demandés par le cabinet (PDF du 24/08/2026). Posés sur
+            une pastille claire, les originaux étant en encre foncée. */}
+        <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-6">
+          {site.accreditations.map((a) => (
+            <a
+              key={a.slug}
+              href={a.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group flex items-center gap-4"
+            >
+              <span className="bg-paper-50 flex h-16 w-32 items-center justify-center rounded-lg px-3 py-2 transition-transform group-hover:-translate-y-0.5">
+                <Image
+                  src={a.src}
+                  alt={a.alt}
+                  width={a.width}
+                  height={a.height}
+                  className="h-auto max-h-full w-auto max-w-full object-contain"
+                />
+              </span>
+              <span className="text-paper-200/55 max-w-[13rem] text-xs leading-relaxed">
+                <strong className="text-paper-200/80 font-medium">{a.entity}</strong>
+                <br />
+                {a.label}
+              </span>
+            </a>
+          ))}
         </div>
 
         {/* Rappel repris de la signature mail du cabinet */}
