@@ -44,7 +44,7 @@
     width: 210mm;
     min-height: 297mm;
     margin: 24px auto;
-    padding: 16mm 20mm 0;
+    padding: 14mm 20mm 0;
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -53,19 +53,29 @@
 
   /* ------------------------------------------------------------- En-tête */
 
-  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16mm; }
+  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8mm; }
 
-  /* Logo officiel fourni par le cabinet, recadré sur son contenu utile.
-     Il porte déjà sa typographie et sa baseline : on ne recompose rien. */
-  .brand img { width: 34mm; height: auto; display: block; }
+  /* La boussole seule, le nom recomposé à côté : le lockup complet du fichier
+     officiel mesurait 44 mm de haut une fois posé à 34 mm de large, soit un
+     sixième de la page mangé avant la première ligne de courrier. */
+  .brand { display: flex; align-items: center; gap: 4.5mm; }
+  .brand img { width: 17mm; height: auto; display: block; }
+  .brand .name { font-size: 17pt; letter-spacing: .04em; color: var(--ink); line-height: 1.1; }
+  .brand .tag { font-size: 6.5pt; letter-spacing: .2em; text-transform: uppercase;
+                color: var(--mute); margin-top: 1.2mm; white-space: nowrap; }
 
-  .header-right { text-align: right; padding-top: 2mm; }
-  .baseline { font-size: 9pt; font-weight: 600; color: var(--navy); letter-spacing: .02em; }
+  .header-right { text-align: right; padding-top: 1mm; }
+  /* La baseline tient sur une ligne : c'est elle qui explique l'acronyme C.A.P.,
+     la couper en deux lui fait perdre sa lecture. */
+  .baseline { font-size: 9pt; font-weight: 600; color: var(--navy); letter-spacing: .02em;
+              white-space: nowrap; }
   .baseline b { color: var(--red); }
-  .header-right img { width: 26mm; height: auto; margin-top: 4mm; display: inline-block; }
+  /* Le label et la marque de l'Ordre sont dans un seul fichier, comme sur le
+     modèle 2022 où ils figuraient déjà côte à côte sous la baseline. */
+  .header-right img { width: 26mm; height: auto; margin-top: 2.5mm; display: inline-block; }
 
   /* Bande de couleurs : rouge court, cyan bref, bleu long — l'ordre du logo. */
-  .bar { display: flex; height: 3.2mm; margin-top: 7mm; }
+  .bar { display: flex; height: 3.2mm; margin-top: 5mm; }
   .bar span:nth-child(1) { flex: 18; background: var(--red); }
   .bar span:nth-child(2) { flex: 9;  background: var(--cyan); }
   .bar span:nth-child(3) { flex: 73; background: var(--navy); }
@@ -92,13 +102,8 @@
   .legal a { color: var(--navy); text-decoration: none; }
   .legal .iban { color: var(--mute); font-style: italic; margin-top: 1mm; }
 
-  /* Marque de l'Ordre des experts-comptables (PDF du 24/08, point 3) :
-     posée en regard de la mention d'inscription, c'est ce qu'elle atteste. */
-  .footer-row { display: flex; align-items: center; gap: 6mm; }
-  .footer-row .legal { flex: 1; min-width: 0; }
-  .footer-row .oec { width: 15mm; height: auto; flex: none; }
   /* Chaque mention reste d'un seul tenant : une adresse coupée en plein mot
-     est la faute classique des pieds de page composés en flex. */
+     est la faute classique des pieds de page composés. */
   .legal .nb { white-space: nowrap; }
 
   @media print {
@@ -113,7 +118,11 @@
 
   <header>
     <div class="brand">
-      <img src="assets/logo-full.png" alt="CAP CONSEILS — Stratégie, Orientation, Performance">
+      <img src="assets/logo-mark.png" alt="">
+      <div>
+        <div class="name">CAP CONSEILS</div>
+        <div class="tag">Stratégie · Orientation · Performance</div>
+      </div>
     </div>
 
     <div class="header-right">
@@ -142,7 +151,6 @@
   <footer>
     <div class="bar bar--footer"><span></span><span></span><span></span></div>
 
-    <div class="footer-row">
     <div class="legal">
       <span class="nb"><strong>Cap Conseils Océan Indien</strong> — SARL, société d'expertise comptable</span>
       <span class="sep">|</span> <span class="nb">Capital 50 000 €</span>
@@ -152,9 +160,6 @@
       <span class="sep">|</span> <span class="nb"><a href="https://www.capconseils.net">www.capconseils.net</a></span><br>
       <span class="nb">Inscrite au tableau de l'Ordre des experts-comptables — Conseil régional de La Réunion</span>
       <div class="iban">IBAN : FR76-1990-6009-7490-0137-7565-043</div>
-    </div>
-
-    <img class="oec" src="assets/oec-mark.png" alt="Ordre des experts-comptables">
     </div>
   </footer>
 
