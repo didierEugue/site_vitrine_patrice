@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Button from "@/components/ui/Button";
+import { site } from "@/content/site";
 
 const SUBJECTS = [
   "Devenir client du cabinet",
@@ -14,6 +15,9 @@ const SUBJECTS = [
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+/** Coordonnées directes renvoyées par l'API quand l'envoi est indisponible. */
+type Fallback = { phone: string; phoneHref: string; email: string };
+
 const field =
   "w-full rounded-sm border border-paper-300 bg-paper-50 px-4 py-3 text-sm text-ink-900 placeholder:text-slate-400 transition-colors focus:border-brand-600 focus:outline-none";
 
@@ -22,11 +26,13 @@ const label = "label block text-slate-500";
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const [fallback, setFallback] = useState<Fallback | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
     setError("");
+    setFallback(null);
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
@@ -39,6 +45,9 @@ export default function ContactForm() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
+        // 503 = aucun fournisseur d'envoi branché : on bascule le visiteur sur
+        // le téléphone et l'e-mail plutôt que de laisser sa demande nulle part.
+        if (res.status === 503 && body.fallback) setFallback(body.fallback as Fallback);
         throw new Error(body.error ?? "Envoi impossible");
       }
 
@@ -161,9 +170,34 @@ export default function ContactForm() {
       </label>
 
       {status === "error" ? (
-        <p role="alert" className="text-signal-500 text-sm">
-          {error}
-        </p>
+        <div role="alert" className="border-signal-500/40 bg-signal-500/5 border-l-2 px-5 py-4">
+          <p className="text-signal-500 text-sm">{error}</p>
+
+          {fallback ? (
+            <dl className="mt-4 space-y-2 text-sm">
+              <div className="flex flex-wrap items-baseline gap-x-3">
+                <dt className="label text-slate-400">Téléphone</dt>
+                <dd>
+                  <a href={fallback.phoneHref} className="numeric text-ink-900 link-underline">
+                    {fallback.phone}
+                  </a>
+                </dd>
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-3">
+                <dt className="label text-slate-400">E-mail</dt>
+                <dd>
+                  <a href={`mailto:${fallback.email}`} className="text-ink-900 link-underline">
+                    {fallback.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-3">
+                <dt className="label text-slate-400">Horaires</dt>
+                <dd className="text-xs text-slate-600">{site.hoursShort}</dd>
+              </div>
+            </dl>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="flex flex-wrap items-center gap-4 pt-2">
