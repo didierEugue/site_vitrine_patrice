@@ -2,7 +2,13 @@ import Link from "next/link";
 
 import CompassMark from "./CompassMark";
 
-/** Marque + nom. Le nom passe en serif : c'est la signature typographique. */
+/**
+ * Marque + nom. Le nom passe en serif : c'est la signature typographique.
+ *
+ * La baseline ne s'affiche qu'à partir de `xl` : sur une barre plus étroite,
+ * ses 250 px insécables poussaient la navigation et faisaient sortir le bouton
+ * « Espace client » de l'écran.
+ */
 export default function Logo({
   tone = "ink",
   className = "",
@@ -29,7 +35,9 @@ export default function Logo({
           Cap Conseils
         </span>
         <span
-          className={`label mt-1.5 text-[0.62rem] ${light ? "text-aqua-300/70" : "text-slate-400"}`}
+          className={`label mt-1.5 hidden text-[0.56rem] whitespace-nowrap xl:block ${
+            light ? "text-aqua-300/70" : "text-slate-400"
+          }`}
         >
           Stratégie · Orientation · Performance
         </span>

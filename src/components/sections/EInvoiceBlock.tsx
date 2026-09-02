@@ -47,9 +47,9 @@ export default function EInvoiceBlock() {
               </h2>
 
               <p className="text-paper-200/70 mt-7 max-w-md leading-relaxed">
-                Réception obligatoire pour toutes les entreprises, émission par vagues. Nous
-                cartographions vos flux, choisissons la plateforme et paramétrons la chaîne avec
-                vous — avant que la date ne devienne une urgence.
+                La réforme est entrée en vigueur : réception obligatoire pour toutes les
+                entreprises, émission par vagues. Nous cartographions vos flux, choisissons la
+                plateforme et paramétrons la chaîne avec vous.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">

@@ -9,7 +9,7 @@ export function Container({
   className?: string;
   children: ReactNode;
 }) {
-  return <div className={`mx-auto w-full max-w-[76rem] px-5 sm:px-8 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-[88rem] px-5 sm:px-8 ${className}`}>{children}</div>;
 }
 
 /** Numéro de section + libellé, façon sommaire de rapport. */

@@ -114,8 +114,16 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+    /*
+     * `suppressHydrationWarning` : les extensions de navigateur posent leurs
+     * propres attributs sur <html> avant que React n'hydrate, ce qui déclenche
+     * un faux décalage. La suppression ne porte que sur les attributs de cette
+     * balise, dont nous ne fixons que `lang` et `className` — rien d'utile
+     * n'est masqué, le reste de l'arbre reste vérifié.
+     */
     <html
       lang="fr"
+      suppressHydrationWarning
       className={`${instrument.variable} ${inter.variable} ${mono.variable}`}
     >
       <body className="antialiased">

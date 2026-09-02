@@ -48,10 +48,15 @@ export default function Header() {
           : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-[var(--header-h)] max-w-[76rem] items-center justify-between gap-6 px-5 sm:px-8">
+      <div className="mx-auto flex h-[var(--header-h)] max-w-[88rem] items-center justify-between gap-4 px-5 sm:px-8 xl:gap-6">
         <Logo />
 
-        <nav aria-label="Navigation principale" className="hidden items-center gap-7 lg:flex">
+        {/* Espacement resserré entre 1024 et 1280 : à `gap-7`, les sept entrées plus
+          le bouton dépassaient la largeur de la barre. */}
+        <nav
+          aria-label="Navigation principale"
+          className="hidden items-center gap-4 lg:flex xl:gap-7"
+        >
           {nav.slice(1).map((item) => (
             <Link
               key={item.href}

@@ -90,6 +90,12 @@ export default function OfficeMap() {
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-4">
         <address className="text-sm leading-relaxed text-slate-600 not-italic">
           <strong className="text-ink-900 font-medium">{office.name}</strong> — {address}
+          {office.landmark ? (
+            <>
+              <br />
+              <span className="text-xs text-slate-500">{office.landmark}</span>
+            </>
+          ) : null}
         </address>
         <a
           href={directionsUrl(`${site.name} ${address}`)}

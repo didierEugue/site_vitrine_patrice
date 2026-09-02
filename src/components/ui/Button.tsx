@@ -10,7 +10,7 @@ type Size = "md" | "lg";
  * on s'en éloigne volontairement.
  */
 const BASE =
-  "label group/btn inline-flex items-center justify-center gap-2.5 rounded-sm transition-[background-color,color,border-color,transform] duration-300 active:translate-y-px";
+  "label group/btn inline-flex items-center justify-center gap-2.5 rounded-sm whitespace-nowrap transition-[background-color,color,border-color,transform] duration-300 active:translate-y-px";
 
 const VARIANTS: Record<Variant, string> = {
   solid: "bg-ink-900 text-paper-50 hover:bg-brand-700",

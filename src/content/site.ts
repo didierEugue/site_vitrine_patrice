@@ -33,9 +33,9 @@ export const site = {
 
   /**
    * Les quatre bureaux du cabinet.
-   * ⚠️ `coords` : géolocalisation approchée (centre de la voie), utilisée pour la
-   * carte GPS demandée le 23/08/2026. À affiner sur le point d'entrée réel de
-   * chaque bureau avant mise en ligne.
+   * `coords` et `landmark` sont repris de l'ancien site (page contact), donc
+   * des valeurs que le cabinet publiait déjà. Seul Paris reste approché : ce
+   * bureau n'existait pas sur l'ancien site.
    * ⚠️ Horaires : Patrice a indiqué « lundi à mardi » puis « le vendredi ».
    * Le mercredi et le jeudi ne sont pas couverts — à confirmer avant mise en
    * ligne (il s'agit vraisemblablement de « lundi à jeudi »).
@@ -43,7 +43,8 @@ export const site = {
   offices: [
     {
       slug: "le-port",
-      coords: { lat: -20.9410, lon: 55.2980 },
+      coords: { lat: -20.943086, lon: 55.290583 },
+      landmark: "Proche du centre commercial CAP SACRÉ CŒUR",
       name: "Le Port",
       role: "Siège social",
       street: "55, rue Estelle Darsanesing",
@@ -53,7 +54,8 @@ export const site = {
     },
     {
       slug: "saint-denis",
-      coords: { lat: -20.8800, lon: 55.4520 },
+      coords: { lat: -20.882428, lon: 55.447969 },
+      landmark: "Immeuble Financière Cathédrale",
       name: "Saint-Denis",
       role: "Bureau",
       street: "28, rue La Bourdonnais",
@@ -63,7 +65,8 @@ export const site = {
     },
     {
       slug: "etang-sale",
-      coords: { lat: -21.2680, lon: 55.3370 },
+      coords: { lat: -21.27141, lon: 55.33422 },
+      landmark: null,
       name: "L'Étang-Salé",
       role: "Bureau",
       street: "4, place de la Principauté d'Andorre",
@@ -74,6 +77,7 @@ export const site = {
     {
       slug: "paris",
       coords: { lat: 48.8340, lon: 2.4060 },
+      landmark: null,
       name: "Paris",
       role: "Bureau",
       street: "29, boulevard Poniatowski",
@@ -126,15 +130,19 @@ export const site = {
   /**
    * Logos ordinaux à afficher sur le site, demandés par Patrice DALLEAU
    * (PDF « Logo Crcc et Croec Réunion », 24/08/2026).
-   * Fichiers extraits du PDF : basse définition, à remplacer par les versions
-   * vectorielles officielles avant mise en ligne.
+   * Le logo de l'Ordre est le fichier officiel haute définition (1590 × 318).
+   * Celui de la CRCC reste extrait du PDF : à remplacer par la version
+   * officielle avant mise en ligne.
    */
   accreditations: [
     {
       slug: "ordre-experts-comptables",
       src: "/ordres/ordre-experts-comptables.png",
-      width: 252,
-      height: 50,
+      width: 1590,
+      height: 318,
+      /** Hauteur d'affichage : les deux logos n'ont pas le même rapport, les
+       *  caler sur une boîte commune rendait le texte de la CRCC illisible. */
+      displayHeight: 44,
       alt: "Ordre des experts-comptables — Conseil national",
       entity: "CAP CONSEILS",
       label: "Inscrite au tableau de l'Ordre des experts-comptables de La Réunion",
@@ -145,6 +153,7 @@ export const site = {
       src: "/ordres/crcc-reunion.png",
       width: 350,
       height: 177,
+      displayHeight: 78,
       alt: "Compagnie régionale des commissaires aux comptes de Saint-Denis de La Réunion",
       entity: "FINEXO AUDIT",
       label: "Inscrit à la CRCC de Saint-Denis de La Réunion",

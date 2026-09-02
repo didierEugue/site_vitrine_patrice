@@ -106,7 +106,7 @@ export default function Footer() {
 
         {/* Logos ordinaux — demandés par le cabinet (PDF du 24/08/2026). Posés sur
             une pastille claire, les originaux étant en encre foncée. */}
-        <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-6">
+        <div className="mt-16 flex flex-wrap items-center gap-x-12 gap-y-8">
           {site.accreditations.map((a) => (
             <a
               key={a.slug}
@@ -115,13 +115,14 @@ export default function Footer() {
               rel="noreferrer noopener"
               className="group flex items-center gap-4"
             >
-              <span className="bg-paper-50 flex h-16 w-32 items-center justify-center rounded-lg px-3 py-2 transition-transform group-hover:-translate-y-0.5">
+              <span className="bg-paper-50 flex items-center justify-center rounded-lg px-5 py-4 transition-transform group-hover:-translate-y-0.5">
                 <Image
                   src={a.src}
                   alt={a.alt}
                   width={a.width}
                   height={a.height}
-                  className="h-auto max-h-full w-auto max-w-full object-contain"
+                  style={{ height: a.displayHeight }}
+                  className="w-auto object-contain"
                 />
               </span>
               <span className="text-paper-200/55 max-w-[13rem] text-xs leading-relaxed">

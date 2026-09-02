@@ -70,11 +70,46 @@ export default function CabinetPage() {
         lead={`${site.legalName} — cabinet d'expertise comptable et de commissariat aux comptes, trois bureaux à La Réunion et un à Paris.`}
       />
 
-      {/* Les deux entités */}
+      {/* Histoire du cabinet — reprise de l'ancien site (« Qui sommes-nous ? »),
+          contenu que la refonte avait laissé de côté. */}
       <section className="section">
         <Container>
+          <div className="grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-3">
+              <Eyebrow index="02">Qui sommes-nous</Eyebrow>
+            </Reveal>
+
+            <Reveal delay={100} className="lg:col-span-8 lg:col-start-5">
+              <p className="font-display text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.25]">
+                Vingt ans d&apos;expertise comptable à La Réunion, dans la
+                <span className="accent text-brand-600"> continuité d&apos;un cabinet</span> qui
+                exerce depuis 1992.
+              </p>
+
+              <div className="mt-10 grid gap-8 sm:grid-cols-2">
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Cap Conseils Océan Indien a été créée par les associés de Cap Conseils Rennes,
+                  cabinet d&apos;expertise comptable depuis 1992. Le cabinet intervient depuis vingt
+                  ans en expertise comptable et, à travers Finexo Audit, en commissariat aux comptes.
+                </p>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Il est dirigé depuis 2006 par{" "}
+                  <strong className="text-ink-900 font-medium">Patrice Dalleau</strong>, formé à
+                  Paris chez In Extenso et Grant Thornton avant de revenir mettre ces compétences au
+                  service du territoire. Il s&apos;appuie sur une équipe pluridisciplinaire d&apos;une
+                  douzaine de collaborateurs.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* Les deux entités */}
+      <section className="section bg-paper-100">
+        <Container>
           <SectionHeading
-            index="02"
+            index="03"
             eyebrow="Organisation"
             title={
               <>
@@ -119,7 +154,7 @@ export default function CabinetPage() {
           <div className="grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <Reveal>
-                <Eyebrow index="03" tone="light">
+                <Eyebrow index="04" tone="light">
                   Implantations
                 </Eyebrow>
                 <h2 className="text-paper-50 mt-7 text-[clamp(2.2rem,4.6vw,3.4rem)]">
@@ -187,7 +222,7 @@ export default function CabinetPage() {
       <section className="section">
         <Container>
           <SectionHeading
-            index="04"
+            index="05"
             eyebrow="Ce sur quoi nous nous engageons"
             title={
               <>
@@ -227,16 +262,17 @@ export default function CabinetPage() {
             </p>
 
             {/* Logos ordinaux fournis par le cabinet (PDF du 24/08/2026) */}
-            <ul className="border-paper-300 mt-8 flex flex-wrap items-center gap-x-8 gap-y-6 border-t pt-8">
+            <ul className="border-paper-300 mt-8 flex flex-wrap items-center gap-x-12 gap-y-8 border-t pt-8">
               {site.accreditations.map((a) => (
                 <li key={a.slug} className="flex items-center gap-4">
-                  <span className="bg-paper-50 border-paper-200 flex h-16 w-32 items-center justify-center rounded-lg border px-3 py-2">
+                  <span className="bg-paper-50 border-paper-200 flex items-center justify-center rounded-lg border px-5 py-4">
                     <Image
                       src={a.src}
                       alt={a.alt}
                       width={a.width}
                       height={a.height}
-                      className="h-auto max-h-full w-auto max-w-full object-contain"
+                      style={{ height: a.displayHeight }}
+                      className="w-auto object-contain"
                     />
                   </span>
                   <span className="max-w-[13rem] text-xs leading-relaxed text-slate-500">

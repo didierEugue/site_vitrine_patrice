@@ -133,6 +133,12 @@ export default function ContactPage() {
                   {o.street}
                   <br />
                   {o.postalCode} {o.city}
+                  {o.landmark ? (
+                    <>
+                      <br />
+                      <span className="text-xs text-slate-500">{o.landmark}</span>
+                    </>
+                  ) : null}
                 </address>
               </Reveal>
             ))}
