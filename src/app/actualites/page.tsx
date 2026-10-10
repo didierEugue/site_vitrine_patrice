@@ -5,6 +5,7 @@ import ArticleCard from "@/components/cards/ArticleCard";
 import CtaBlock from "@/components/sections/CtaBlock";
 import NewsletterForm from "@/components/sections/NewsletterForm";
 import PageHeader from "@/components/sections/PageHeader";
+import VeilleList from "@/components/sections/VeilleList";
 import Reveal from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
 import { formatDate, sortedArticles } from "@/content/articles";
@@ -72,6 +73,9 @@ export default function ArticlesPage() {
           </div>
         </Container>
       </section>
+
+      {/* Veille réglementaire — flux Service Public, distinct de nos articles */}
+      <VeilleList />
 
       {/* Lettre du cabinet — ancre /newsletter de l'ancien site */}
       <section id="lettre" className="bg-ink-900 text-paper-200 grain relative overflow-hidden scroll-mt-24">
